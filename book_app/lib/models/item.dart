@@ -7,16 +7,14 @@ part 'item.g.dart';
 
 @JsonSerializable(createToJson: false)
 class Items {
-  String id;
-  String etag;
-  String selfLink;
+  String? id, etag, selfLink;
   VolumeInfo volumeInfo;
   AccessInfo accessInfo;
 
   Items({
-    required this.id,
-    required this.etag,
-    required this.selfLink,
+    this.id,
+    this.etag,
+    this.selfLink,
     required this.volumeInfo,
     required this.accessInfo,
   });

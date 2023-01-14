@@ -16,37 +16,34 @@ class HomeWidgetPreviewList extends StatelessWidget {
   /// widget to build list from future builder data
   ///
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 25),
-      child: FutureBuilder<List<Items>>(
-        // future from which we get data
-        future: HomeLogic().getBookPreview(title: title),
-        builder: ((context, snapshot) {
-          // waiting for the async function to execute
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            // display loader on screen
-            return const CircularProgressIndicator();
-            // check weater snapshat contains data
-          } else if (snapshot.hasData) {
-            // if snapshot data is not null
-            if (snapshot.data != null) {
-              final List<Items> bookModel = snapshot.data!;
-              // check weater snapshot is not empty
-              if (bookModel.isEmpty) {
-                // display empty message
-                return _buildListEmpty(context);
-              } else {
-                // display preview list
-                return _buildDocsList(context, bookModel);
-              }
-            } else {
+    return FutureBuilder<List<Items>>(
+      // future from which we get data
+      future: HomeLogic().getBookPreview(title: title),
+      builder: ((context, snapshot) {
+        // waiting for the async function to execute
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          // display loader on screen
+          return const CircularProgressIndicator();
+          // check weater snapshat contains data
+        } else if (snapshot.hasData) {
+          // if snapshot data is not null
+          if (snapshot.data != null) {
+            final List<Items> bookModel = snapshot.data!;
+            // check weater snapshot is not empty
+            if (bookModel.isEmpty) {
+              // display empty message
               return _buildListEmpty(context);
+            } else {
+              // display preview list
+              return _buildDocsList(context, bookModel);
             }
           } else {
             return _buildListEmpty(context);
           }
-        }),
-      ),
+        } else {
+          return _buildListEmpty(context);
+        }
+      }),
     );
   }
 
@@ -80,23 +77,28 @@ class HomeWidgetPreviewList extends StatelessWidget {
   /// widget to display list view in horizontal view
   ///
   Widget _buildDocsList(BuildContext context, List<Items> books) {
-    return Expanded(
-      flex: 1,
-      child: SizedBox(
-        height: 250.0,
-        child: ListView.builder(
-          shrinkWrap: true,
-          scrollDirection: Axis.horizontal,
-          itemCount: books.length,
-          padding: const EdgeInsets.all(12),
-          itemBuilder: (ctx, index) {
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: HomeWidgetPreview(
-                volumeInfo: books[index],
-              ),
-            );
-          },
+    return Padding(
+      padding: const EdgeInsets.symmetric(
+        horizontal: 20,
+      ),
+      child: Expanded(
+        flex: 0,
+        child: SizedBox(
+          height: 250.0,
+          child: ListView.builder(
+            shrinkWrap: true,
+            scrollDirection: Axis.horizontal,
+            itemCount: books.length,
+            padding: const EdgeInsets.all(12),
+            itemBuilder: (ctx, index) {
+              return Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: HomeWidgetPreview(
+                  volumeInfo: books[index],
+                ),
+              );
+            },
+          ),
         ),
       ),
     );

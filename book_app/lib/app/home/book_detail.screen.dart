@@ -13,11 +13,12 @@ class BookDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return (Scaffold(
-      backgroundColor: const Color.fromARGB(255, 59, 57, 57),
+      backgroundColor: const Color.fromARGB(255, 86, 83, 83),
       floatingActionButton: Padding(
         padding: const EdgeInsets.symmetric(vertical: 25.0),
         child: ElevatedButton(
           style: ElevatedButton.styleFrom(
+            primary: Colors.black,
             shadowColor: Colors.black,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(40),
@@ -157,7 +158,6 @@ class BookDetailScreen extends StatelessWidget {
         children: [
           _buildRatingInfo(context),
           _buildPageInfo(context),
-          _buildLanguageInfo(context),
           _buildPublishDateInfo(context)
         ],
       ),
@@ -175,16 +175,25 @@ class BookDetailScreen extends StatelessWidget {
         const SizedBox(
           height: 5,
         ),
-        Text(
-          item.volumeInfo.averageRating.toString(),
-          style: GoogleFonts.lato(
-            textStyle: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 15,
+        Row(
+          children: [
+            const Icon(
+              Icons.star,
               color: Colors.white,
+              size: 18,
             ),
-          ),
-        )
+            Text(
+              item.volumeInfo.averageRating.toString(),
+              style: GoogleFonts.lato(
+                textStyle: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                  color: Colors.white,
+                ),
+              ),
+            )
+          ],
+        ),
       ],
     );
   }
@@ -206,31 +215,6 @@ class BookDetailScreen extends StatelessWidget {
         ),
         Text(
           item.volumeInfo.pageCount.toString(),
-          style: GoogleFonts.lato(
-            textStyle: const TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 15,
-              color: Colors.white,
-            ),
-          ),
-        )
-      ],
-    );
-  }
-
-  Widget _buildLanguageInfo(BuildContext context) {
-    return Column(
-      children: [
-        Text(
-          "Language",
-          style: GoogleFonts.lato(
-              textStyle: TextStyle(fontSize: 15, color: Colors.grey[400])),
-        ),
-        const SizedBox(
-          height: 5,
-        ),
-        Text(
-          'No data',
           style: GoogleFonts.lato(
             textStyle: const TextStyle(
               fontWeight: FontWeight.bold,

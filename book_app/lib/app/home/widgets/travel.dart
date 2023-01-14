@@ -18,7 +18,7 @@ class TravelWidgets extends StatelessWidget {
                 'Travel',
                 style: GoogleFonts.openSans(
                   textStyle: const TextStyle(
-                    fontSize: 24,
+                    fontSize: 22,
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),

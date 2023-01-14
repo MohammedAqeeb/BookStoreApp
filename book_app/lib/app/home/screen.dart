@@ -19,29 +19,17 @@ class HomeScreen extends StatelessWidget {
 
   PreferredSizeWidget _buildAppBar(BuildContext context) {
     return AppBar(
+      backgroundColor: Colors.white,
       elevation: 0,
       title: Text(
         'Book App',
         style: GoogleFonts.openSans(
           fontSize: 18,
           fontWeight: FontWeight.bold,
-          color: Colors.white,
+          color: Colors.black,
         ),
       ),
       centerTitle: true,
-      actions: [
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: IconButton(
-            onPressed: () {},
-            icon: const Icon(
-              Icons.search,
-              size: 30,
-              color: Colors.white,
-            ),
-          ),
-        ),
-      ],
     );
   }
 
@@ -50,11 +38,25 @@ class HomeScreen extends StatelessWidget {
       slivers: [
         SliverList(
           delegate: SliverChildListDelegate(
-            const [
-              HealthWidget(),
-              ArtWidget(),
-              TravelWidgets(),
-              AdventureWidgets(),
+            [
+              Padding(
+                padding: const EdgeInsets.only(top: 10, left: 15, bottom: 10),
+                child: Text(
+                  'Discover Latest Book',
+                  style: GoogleFonts.openSans(
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                ),
+              ),
+              const HealthWidget(),
+              const Divider(thickness: 1),
+              const AdventureWidgets(),
+              const Divider(thickness: 1),
+              const TravelWidgets(),
+              const Divider(thickness: 1),
+              const ArtWidget(),
             ],
           ),
         ),

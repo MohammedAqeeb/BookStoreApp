@@ -15,9 +15,9 @@ VolumeInfo _$VolumeInfoFromJson(Map<String, dynamic> json) => VolumeInfo(
       publisher: json['publisher'] as String?,
       publishedDate: json['publishedDate'] as String?,
       description: json['description'] as String?,
-      pageCount: json['pageCount'] as int,
-      averageRating: (json['averageRating'] as num).toDouble(),
-      ratingsCount: json['ratingsCount'] as int,
+      pageCount: json['pageCount'] as int?,
+      averageRating: (json['averageRating'] as num?)?.toDouble(),
+      ratingsCount: json['ratingsCount'] as int?,
       allowAnonLogging: json['allowAnonLogging'] as bool,
       imageLinks:
           ImageLinks.fromJson(json['imageLinks'] as Map<String, dynamic>),

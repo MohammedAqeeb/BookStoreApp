@@ -18,7 +18,7 @@ class HealthWidget extends StatelessWidget {
                 'Health',
                 style: GoogleFonts.openSans(
                   textStyle: const TextStyle(
-                    fontSize: 24,
+                    fontSize: 22,
                     color: Colors.black,
                     fontWeight: FontWeight.bold,
                   ),

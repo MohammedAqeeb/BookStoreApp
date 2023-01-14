@@ -4,13 +4,13 @@ import '../models/item.dart';
 
 class Category {
   /// Function to get Book details by type
-  /// 
+  ///
   /// * [type] health, arts, pass as an argument to api
   ///
   Future<List<Items>> getBookItems({
     required String type,
   }) async {
-    // data model 
+    // data model
     List<Items> bookModel = [];
     String url = 'https://www.googleapis.com/books/v1/volumes?q=subject:$type';
 
@@ -20,9 +20,13 @@ class Category {
           if (response.statusCode == 200) {
             var bookDetails = response.body;
 
+            print('book length');
+            print(bookDetails.length);
+
             final jsonMap = json.decode(bookDetails);
 
             var getItems = jsonMap['items'];
+
             // parsing the data obtain from api to the book model
             for (var items in getItems) {
               bookModel.add(

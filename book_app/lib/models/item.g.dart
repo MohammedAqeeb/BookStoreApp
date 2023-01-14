@@ -7,9 +7,9 @@ part of 'item.dart';
 // **************************************************************************
 
 Items _$ItemsFromJson(Map<String, dynamic> json) => Items(
-      id: json['id'] as String,
-      etag: json['etag'] as String,
-      selfLink: json['selfLink'] as String,
+      id: json['id'] as String?,
+      etag: json['etag'] as String?,
+      selfLink: json['selfLink'] as String?,
       volumeInfo:
           VolumeInfo.fromJson(json['volumeInfo'] as Map<String, dynamic>),
       accessInfo:
